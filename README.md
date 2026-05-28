@@ -100,3 +100,15 @@ To stop the servers, press Ctrl+C in each terminal window.
 ---
 
 **Note:** Demo application with in-memory data. Not production-ready without database, authentication, and security implementation.
+
+## Development
+
+Start the frontend dev server:
+```bash
+cd client && npm run dev
+```
+
+Start the backend API server:
+```bash
+cd server && python3 main.py
+```
