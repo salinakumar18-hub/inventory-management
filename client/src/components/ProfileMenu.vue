@@ -2,6 +2,7 @@
   <div class="profile-menu">
     <button
       class="profile-button"
+      :class="{ 'profile-button--sidebar': sidebar }"
       @click="toggleDropdown"
       @blur="handleBlur"
     >
@@ -77,6 +78,10 @@
 import { ref, computed } from 'vue'
 import { useAuth } from '../composables/useAuth'
 import { useI18n } from '../composables/useI18n'
+
+const props = defineProps({
+  sidebar: { type: Boolean, default: false }
+})
 
 const { currentUser, logout, getInitials } = useAuth()
 const { t } = useI18n()
@@ -277,5 +282,26 @@ const handleLogout = () => {
   border-radius: 12px;
   min-width: 20px;
   text-align: center;
+}
+
+.profile-button--sidebar {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.profile-button--sidebar .profile-name {
+  color: #cbd5e1;
+}
+
+.profile-button--sidebar .chevron {
+  color: #475569;
+  margin-left: auto;
+}
+
+.profile-button--sidebar:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 </style>
