@@ -2,6 +2,7 @@
   <div class="language-switcher">
     <button
       class="language-button"
+      :class="{ 'language-button--sidebar': sidebar }"
       @click="toggleDropdown"
       @blur="handleBlur"
     >
@@ -57,6 +58,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from '../composables/useI18n'
+
+const props = defineProps({
+  sidebar: { type: Boolean, default: false }
+})
 
 const { currentLocale, setLocale, availableLocales, localeName } = useI18n()
 
@@ -179,5 +184,27 @@ const selectLanguage = (locale) => {
 .check-icon {
   color: #2563eb;
   flex-shrink: 0;
+}
+
+.language-button--sidebar {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.language-button--sidebar .globe-icon {
+  color: #475569;
+}
+
+.language-button--sidebar .language-label {
+  color: #94a3b8;
+}
+
+.language-button--sidebar:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
 }
 </style>
